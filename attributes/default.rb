@@ -25,7 +25,7 @@ default["developer_mode"] = false  # we want secure passwords by default
 default["glance"]["services"]["api"]["scheme"] = "http"    # node_attribute
 default["glance"]["services"]["api"]["network"] = "public" # node_attribute
 default["glance"]["services"]["api"]["port"] = 9292        # node_attribute
-default["glance"]["services"]["api"]["path"] = "/v1"       # node_attribute
+default["glance"]["services"]["api"]["path"] = "/v2"       # node_attribute
 
 default["glance"]["services"]["registry"]["scheme"] = "http"    # node_attribute
 default["glance"]["services"]["registry"]["network"] = "public" # node_attribute
