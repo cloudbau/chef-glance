@@ -11,6 +11,11 @@ verbose = True
 # Show debugging output in logs (sets DEBUG log level output)
 debug = False
 
+
+<% if node["glance"]["logging.conf"]["use"] %>
+log_config=/etc/glance/logging.conf
+<% end %>
+
 sql_connection = mysql://<%= @db_user %>:<%= @db_password %>@<%= @db_ip_address %>/<%= @db_name %>
 sql_idle_timeout = 3600
 

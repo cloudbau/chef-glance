@@ -18,6 +18,8 @@
 # limitations under the License.
 #
 
+include_recipe "glance::common"
+
 platform_options = node["glance"]["platform"]
 
 package "curl" do

@@ -11,6 +11,10 @@ verbose = True
 # Show debugging output in logs (sets DEBUG log level output)
 debug = False
 
+<% if node["glance"]["logging.conf"]["use"] %>
+log_config=/etc/glance/logging.conf
+<% end %>
+
 # Address to bind the registry server
 bind_host = <%= @registry_bind_address %>
 

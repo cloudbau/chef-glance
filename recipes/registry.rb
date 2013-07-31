@@ -21,6 +21,8 @@
 include_recipe "mysql::client"
 include_recipe "mysql::ruby"
 
+include_recipe "glance::common"
+
 platform_options = node["glance"]["platform"]
 
 # Allow for using a well known db password

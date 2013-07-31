@@ -1,0 +1,42 @@
+[loggers]
+keys=root,api,registry,combined
+
+[formatters]
+keys=logstash
+
+[handlers]
+keys=stderr, file
+
+[logger_root]
+level=NOTSET
+handlers=stderr, file
+
+[logger_api]
+level=DEBUG
+handlers=stderr, file
+qualname=glance-api
+
+[logger_registry]
+level=DEBUG
+handlers=stderr, file
+qualname=glance-registry
+
+[logger_combined]
+level=DEBUG
+handlers=stderr, file
+qualname=glance-combined
+
+[handler_stderr]
+class = StreamHandler
+args = (sys.stderr,)
+formatter = logstash
+
+[handler_file]
+class=FileHandler
+level=INFO
+formatter=logstash
+args=('<%= node["glance"]["logging.conf"]["logfile"] %>', )
+
+[formatter_logstash]
+class=<%= node["glance"]["logging.conf"]["formatter"] %>
+
