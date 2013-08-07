@@ -18,6 +18,12 @@
 # limitations under the License.
 #
 
+directory "/etc/glance" do
+  action :create
+  owner "root"
+  group "root"
+  mode "0755"
+end
 
 template "/etc/glance/logging.conf" do
   source "logging.conf.erb"
