@@ -195,6 +195,14 @@ template "/etc/glance/glance-scrubber.conf" do
     )
 end
 
+template "/etc/glance/schema-image.json" do
+  source "/schema-image.json.erb"
+  owner "root"
+  group "root"
+  mode "0644"
+  notifies :restart, resources(:service => "glance-api"), :delayed
+end
+
 # Configure glance-cache-pruner to run every 30 minutes
 cron "glance-cache-pruner" do
   minute "*/30"
