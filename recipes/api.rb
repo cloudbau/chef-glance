@@ -39,12 +39,6 @@ platform_options["glance_packages"].each do |pkg|
   end
 end
 
-service "glance-api" do
-  service_name platform_options["glance_api_service"]
-  supports :status => true, :restart => true
-  action :enable
-end
-
 directory "/etc/glance" do
   action :create
   group "glance"
@@ -141,7 +135,7 @@ template "/etc/glance/glance-api.conf" do
     "service_user" => node["glance"]["service_user"],
     "service_pass" => node["glance"]["service_pass"]
     )
-  notifies :restart, resources(:service => "glance-api"), :immediately
+  notifies :restart, resources(:service => "glance-api"), :delayed
 end
 
 template "/etc/glance/glance-api-paste.ini" do
@@ -221,6 +215,12 @@ template "/etc/glance/glance-scrubber-paste.ini" do
   owner "root"
   group "root"
   mode "0644"
+end
+
+service "glance-api" do
+  service_name platform_options["glance_api_service"]
+  supports :status => true, :restart => true
+  action [:enable, :start]
 end
 
 # Register Image Service
