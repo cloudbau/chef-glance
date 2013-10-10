@@ -39,6 +39,12 @@ platform_options["glance_packages"].each do |pkg|
   end
 end
 
+service "glance-api" do
+  service_name platform_options["glance_api_service"]
+  supports :status => true, :restart => true
+  action :enable
+end
+
 directory "/etc/glance" do
   action :create
   group "glance"
@@ -218,9 +224,7 @@ template "/etc/glance/glance-scrubber-paste.ini" do
 end
 
 service "glance-api" do
-  service_name platform_options["glance_api_service"]
-  supports :status => true, :restart => true
-  action [:enable, :start]
+  action :start
 end
 
 # Register Image Service
