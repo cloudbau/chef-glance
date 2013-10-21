@@ -41,7 +41,7 @@ end
 
 service "glance-api" do
   service_name platform_options["glance_api_service"]
-  supports :status => true, :restart => true
+  supports :status => false, :restart => true
   action :enable
 end
 
@@ -58,7 +58,7 @@ template "/etc/glance/policy.json" do
   owner "root"
   group "root"
   mode "0644"
-  notifies :restart, resources(:service => "glance-api"), :immediately
+  notifies :restart, resources(:service => "glance-api"), :delayed
   not_if do
     File.exists?("/etc/glance/policy.json")
   end
@@ -158,7 +158,7 @@ template "/etc/glance/glance-api-paste.ini" do
     "service_user" => node["glance"]["service_user"],
     "service_pass" => node["glance"]["service_pass"]
     )
-  notifies :restart, resources(:service => "glance-api"), :immediately
+  notifies :restart, resources(:service => "glance-api"), :delayed
 end
 
 template "/etc/glance/glance-cache.conf" do
