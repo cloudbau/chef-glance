@@ -60,7 +60,7 @@ default["glance"]["syslog"]["facility"] = "LOG_LOCAL2"      # node_attribute
 default["glance"]["syslog"]["config_facility"] = "local2"   # node_attribute
 
 default["glance"]["logging.conf"]["use"] = false
-default["glance"]["logging.conf"]["formatter"] = "glance.openstack.common.log.LegacyFormatter"
+default["glance"]["logging.conf"]["formatter"] = "glance.openstack.common.log.ContextFormatter"
 default["glance"]["logging.conf"]["logfile"] = "/var/log/glance/glance.log"
 
 # platform-specific settings
